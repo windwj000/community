@@ -6,4 +6,4 @@
 
 主要使用到的技术有 MySQL、Redis、Kafka。
 
-<img src="https://github.com/Jiebupup/community/blob/master/pic/pic1.png" width="50%">
+<img src="https://github.com/Jiebupup/community/blob/master/pic/pic1.png" width="150%">
