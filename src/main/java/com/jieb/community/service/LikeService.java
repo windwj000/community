@@ -47,13 +47,13 @@ public class LikeService {
     }
 
     // 查询某实体点赞的数量
-    public long fingEntityLikeCount(int entityType, int entityId) {
+    public long findEntityLikeCount(int entityType, int entityId) {
         String entityLikeKey = RedisKeyUtil.getEntityLikeKey(entityType, entityId);
         return redisTemplate.opsForSet().size(entityLikeKey);
     }
 
     // 查询某人对某实体的点赞状态
-    public int fingEntityLikeStatus(int userId,int entityType, int entityId) {
+    public int findEntityLikeStatus(int userId,int entityType, int entityId) {
         String entityLikeKey = RedisKeyUtil.getEntityLikeKey(entityType, entityId);
         return redisTemplate.opsForSet().isMember(entityLikeKey,userId)?1:0;
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <contextName>community</contextName>
-    <property name="LOG_PATH" value="/Users/wangjie/project/log"/>
+    <property name="LOG_PATH" value="/Users/wangjie/project/community-data/log"/>
     <property name="APPDIR" value="community"/>
 
     <!-- error file -->

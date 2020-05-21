@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Component
-@Aspect
+/*@Component
+@Aspect*/
 public class ServiceLogAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(ServiceLogAspect.class);
@@ -28,6 +28,7 @@ public class ServiceLogAspect {
     @Before("pointcut()")
     public void before(JoinPoint joinPoint){
         ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
+        // 增加生产者消费者之后会有空的可能
         if (attributes == null) {
             return;
         }

@@ -6,12 +6,18 @@ import com.jieb.community.service.UserService;
 import com.jieb.community.util.CookieUtil;
 import com.jieb.community.util.HostHolder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.Security;
 import java.util.Date;
 
 @Component
@@ -32,6 +38,10 @@ public class LoginTicketInterceptor implements HandlerInterceptor {
             if (loginTicket != null && loginTicket.getStatus() == 0 && loginTicket.getExpired().after(new Date())) {
                 User user = userService.findUserById(loginTicket.getUserId());
                 hostHolder.setUser(user);
+
+                // 构建用户认证的结果，并存入 SecurityContext，以便于 Security 进行授权
+                Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword(), userService.getAuthorities(user.getId()));
+                SecurityContextHolder.setContext(new SecurityContextImpl(authentication));
             }
         }
 
@@ -49,5 +59,6 @@ public class LoginTicketInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         hostHolder.clear();
+        SecurityContextHolder.clearContext();
     }
 }
