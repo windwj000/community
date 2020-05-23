@@ -6,13 +6,13 @@
 
 ## 系统架构图
 
-<img src="/community/pic/architecture.png" width="50%">
+<img src="https://github.com/Jiebupup/community/tree/master/pic/architecture.png" width="50%">
 
 ## 注册登录
 
 ### 首页
 
-<img src="/community/pic/index.png" width="50%">
+<img src="https://github.com/Jiebupup/community/tree/master/pic/index.png" width="50%">
 
 用户和帖子，分页
 
