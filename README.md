@@ -1,4 +1,4 @@
-# 简介
+## 简介
 
 基于 Spring Boot + MyBatis + Thymeleaf 搭建的社区网站，还使用到 Redis、Kafka 和 Elasticsearch。实现的功能包括注册登录、发帖评论、私信、点赞关注、系统通知、搜索等。
 
@@ -6,13 +6,13 @@
 
 ## 系统架构图
 
-<img src="https://github.com/Jiebupup/community/blob/master/pic/architecture.png" width="50%">
+<img src="https://github.com/Jiebupup/community/blob/master/pic/architecture.png" width="75%">
 
 ## 注册登录
 
 ### 首页
 
-<img src="https://github.com/Jiebupup/community/blob/master/pic/index.png" width="50%">
+<img src="https://github.com/Jiebupup/community/blob/master/pic/index.png" width="75%">
 
 用户和帖子，分页
 
