@@ -222,7 +222,7 @@ redisTemplate.opsForValue().setBit()。
 
 PostScoreRefreshJob 类的 refresh() 中加入计算帖子分数的公式：log(精华分+评论数*10+点赞数*2+收藏数*2)+(发布时间-纪元)。时间和分数对应的曲线如下图：
 
-<img src="https://github.com/Jiebupup/community/blob/master/pic/score_time.png" width="75%">
+<img src="https://github.com/Jiebupup/community/blob/master/pic/score_time.png" width="50%">
 
 可以看到随着帖子的热度下降的形势。
 
