@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jieb.community.dao.UserMapper">
+
     <sql id="selectFields">
         id,username,password,salt,email,type,status,activation_code,header_url,create_time
     </sql>
@@ -48,4 +49,5 @@
     <update id="updateHeader">
         update user set header_url=#{headerUrl} where id=#{id}
     </update>
+
 </mapper>

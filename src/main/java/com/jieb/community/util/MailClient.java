@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
-@Component
+    @Component
 public class MailClient {
     private static final Logger logger=LoggerFactory.getLogger(MailClient.class);
 

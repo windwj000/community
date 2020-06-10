@@ -10,6 +10,7 @@ import java.util.Date;
 // ES 设置
 @Document(indexName = "discusspost",type = "_doc",shards = 6,replicas = 3)
 public class DiscussPost {
+
     @Id
     private int id;
 
