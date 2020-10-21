@@ -67,7 +67,7 @@ public class UserService implements CommunityConstant {
             map.put("passwordMsg", "密码不能为空！");
             return map;
         }
-        if(StringUtils.isBlank(user.getPassword())){
+        if(StringUtils.isBlank(user.getEmail())){
             map.put("emailMsg", "邮箱不能为空！");
             return map;
         }

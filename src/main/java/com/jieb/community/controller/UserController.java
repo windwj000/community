@@ -123,7 +123,7 @@ public class UserController implements CommunityConstant {
         try {
             headerImage.transferTo(dest);
         } catch (IOException e) {
-            logger.error("上传文件失败：" + e.getMessage());
+            logger.error("上传文件失败：" );
             throw new RuntimeException("上传文件失败，服务器发生异常！", e);
         }
 
