@@ -21,7 +21,7 @@
 
 ## 系统架构图
 
-<img src="https://github.com/Jiebupup/community/blob/master/pic/architecture.png" width="75%">
+<img src="https://github.com/windwj000/community/blob/master/pics/architecture.png" width="75%">
 
 ## 运行网站
 
@@ -33,7 +33,7 @@
 
 ### 首页
 
-<img src="https://github.com/Jiebupup/community/blob/master/pic/index.png" width="75%">
+<img src="https://github.com/windwj000/community/blob/master/pics/index.png" width="75%">
 
 用户 User 类和帖子 DiscussPost 类遵从一般后台业务开发流程：建表->entity->mapper->*_mapper.xml->service->controller，按照这个顺序实现对一个目标的增删改查操作。
 这个过程中，主要涉及 MySQL、MyBatis 以及 Spring Boot 的各种注解。
@@ -43,6 +43,7 @@
 Page 类分装了分页逻辑，包含当前页面 current、显示上限 limit、总行数 rows 和查询路径 path，除了自动生成的 get/set 方法，我们还需要加上：
 
 ```java
+
 /**
  * 获取当前页的起始行
  */
@@ -76,6 +77,7 @@ public int getTo(){
     int total=getTotal();
     return to>total?total:to;
 }
+
 ```
 
 这些对页的 get 操作实现了首页的分页功能。
@@ -237,7 +239,7 @@ redisTemplate.opsForValue().setBit()。
 
 PostScoreRefreshJob 类的 refresh() 中加入计算帖子分数的公式：log(精华分+评论数*10+点赞数*2+收藏数*2)+(发布时间-纪元)。时间和分数对应的曲线如下图：
 
-<img src="https://github.com/Jiebupup/community/blob/master/pic/score_time.png" width="50%">
+<img src="https://github.com/windwj000/community/blob/master/pics/score_time.png" width="50%">
 
 可以看到随着帖子的热度下降的形势。
 
