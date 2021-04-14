@@ -40,10 +40,10 @@ public class DiscussPostService {
     private LoadingCache<String, List<DiscussPost>> postListCache;
 
     // 帖子总数本地缓存
-    private LoadingCache<Integer,Integer> postRowsCache;
+    private LoadingCache<Integer, Integer> postRowsCache;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         // 初始化帖子列表本地缓存
         postListCache = Caffeine.newBuilder()
                 .maximumSize(maxSize)
@@ -83,7 +83,7 @@ public class DiscussPostService {
                 });
     }
 
-    public List<DiscussPost> findDiscussPosts(int userId, int offset, int limit,int orderMode){
+    public List<DiscussPost> findDiscussPosts(int userId, int offset, int limit, int orderMode) {
         // userId = 0 表示访问首页
         if (userId == 0 && orderMode == 1) {
             // 缓存的 key 和 offset & limit 有关
@@ -91,10 +91,10 @@ public class DiscussPostService {
         }
 
         logger.debug("load post list from DB.");
-        return discussPostMapper.selectDiscussPosts(userId, offset, limit,orderMode);
+        return discussPostMapper.selectDiscussPosts(userId, offset, limit, orderMode);
     }
 
-    public int findDiscussPostRows(int userId){
+    public int findDiscussPostRows(int userId) {
         if (userId == 0) {
             return postRowsCache.get(userId);
         }
@@ -103,9 +103,10 @@ public class DiscussPostService {
         return discussPostMapper.selectDiscussPostRows(userId);
     }
 
-    public int addDiscussPost(DiscussPost post){
-        if(post==null)
+    public int addDiscussPost(DiscussPost post) {
+        if (post == null) {
             throw new IllegalArgumentException("参数不能为空！");
+        }
 
         // 转译 HTML 标记
         post.setTitle(HtmlUtils.htmlEscape(post.getTitle()));
@@ -125,15 +126,15 @@ public class DiscussPostService {
         return discussPostMapper.updateCommentCount(id, commentCount);
     }
 
-    public int updateType(int id, int type){
+    public int updateType(int id, int type) {
         return discussPostMapper.updateType(id, type);
     }
 
-    public int updateStatus(int id, int status){
+    public int updateStatus(int id, int status) {
         return discussPostMapper.updateStatus(id, status);
     }
 
-    public int updateScore(int id, double score){
+    public int updateScore(int id, double score) {
         return discussPostMapper.updateScore(id, score);
     }
 }

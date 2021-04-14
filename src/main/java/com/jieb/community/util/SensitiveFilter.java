@@ -33,7 +33,7 @@ public class SensitiveFilter {
                 this.addKeyword(keyword);
             }
         } catch (IOException e) {
-            logger.error("加载敏感词文件失败！"+e.getMessage());
+            logger.error("加载敏感词文件失败！" + e.getMessage());
         }
     }
 
@@ -44,20 +44,21 @@ public class SensitiveFilter {
             TrieNode subNode = tempNode.getSubNode(c);
             if (subNode == null) {
                 subNode = new TrieNode();
-                tempNode.addSubNode(c,subNode);
+                tempNode.addSubNode(c, subNode);
             }
             tempNode = subNode;
-            if(i==keyword.length()-1)
+            if (i == keyword.length() - 1)
                 tempNode.setKeywordEnd(true);
         }
     }
 
     public String filter(String text) {
-        if(StringUtils.isBlank(text))
+        if (StringUtils.isBlank(text)) {
             return null;
+        }
         TrieNode tempNode = root;
-        int begin=0;
-        int position=0;
+        int begin = 0;
+        int position = 0;
         StringBuilder sb = new StringBuilder();
         while (position < text.length()) {
             char c = text.charAt(position);
@@ -80,8 +81,9 @@ public class SensitiveFilter {
                 position++;
                 begin = position;
                 tempNode = root;
-            }else
+            } else {
                 position++;
+            }
         }
         sb.append(text.substring(begin));
 
@@ -94,12 +96,12 @@ public class SensitiveFilter {
 
     }
 
-    private class TrieNode{
+    private class TrieNode {
         private boolean isEnd = false;
 
         private Map<Character, TrieNode> subNodes = new HashMap<>();
 
-        public boolean isKeywordEnd(){
+        public boolean isKeywordEnd() {
             return isEnd;
         }
 

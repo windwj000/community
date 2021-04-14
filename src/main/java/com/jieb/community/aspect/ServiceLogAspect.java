@@ -21,13 +21,13 @@ public class ServiceLogAspect {
     private static final Logger logger = LoggerFactory.getLogger(ServiceLogAspect.class);
 
     @Pointcut("execution(* com.jieb.community.service.*.*(..))")
-    public void pointcut(){
+    public void pointcut() {
 
     }
 
     @Before("pointcut()")
-    public void before(JoinPoint joinPoint){
-        ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
+    public void before(JoinPoint joinPoint) {
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         // 增加生产者消费者之后会有空的可能
         if (attributes == null) {
             return;
@@ -35,8 +35,8 @@ public class ServiceLogAspect {
         HttpServletRequest request = attributes.getRequest();
         String ip = request.getRemoteHost();
         String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        String target=joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
-        logger.info(String.format("用户[%s]，在[%s]，访问了[%s]。",ip,now,target));
+        String target = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
+        logger.info(String.format("用户[%s]，在[%s]，访问了[%s]。", ip, now, target));
     }
 
 }

@@ -192,13 +192,13 @@ public class EventConsumer implements CommunityConstant {
         public void run() {
             // 生成图片失败
             if (System.currentTimeMillis() - startTime > 30000) {
-                logger.error("执行时间过长，终止任务："+fileName);
+                logger.error("执行时间过长，终止任务：" + fileName);
                 future.cancel(true);
                 return;
             }
             // 上传云服务失败
             if (uploadTimes >= 3) {
-                logger.error("上传次数太多，终止任务："+fileName);
+                logger.error("上传次数太多，终止任务：" + fileName);
                 future.cancel(true);
                 return;
             }
@@ -212,16 +212,16 @@ public class EventConsumer implements CommunityConstant {
                 policy.put("returnBody", CommunityUtil.getJSONString(0));
 
                 // 生成上传凭证
-                Auth auth=Auth.create(accessKey, secretKey);
+                Auth auth = Auth.create(accessKey, secretKey);
                 String uploadToken = auth.uploadToken(shareBucketName, fileName, 3600, policy);
 
                 // 指定上传机房，和客户端上传不一样
-                UploadManager uploadManager=new UploadManager(new Configuration(Zone.zone0()));
-                try{
+                UploadManager uploadManager = new UploadManager(new Configuration(Zone.zone0()));
+                try {
                     // 开始上传图片
-                    Response response=uploadManager.put(path,fileName,uploadToken,null,"image/"+suffix,false);
+                    Response response = uploadManager.put(path, fileName, uploadToken, null, "image/" + suffix, false);
                     // 处理响应结果
-                    JSONObject jsonObject=JSONObject.parseObject(response.bodyString());
+                    JSONObject jsonObject = JSONObject.parseObject(response.bodyString());
                     if (jsonObject == null || jsonObject.get("code") == null || !jsonObject.get("code").toString().equals("0")) {
                         logger.info(String.format("第%d次上传失败[%s].", uploadTimes, fileName));
                     } else {
@@ -231,8 +231,8 @@ public class EventConsumer implements CommunityConstant {
                 } catch (QiniuException e) {
                     logger.info(String.format("第%d次上传失败[%s].", uploadTimes, fileName));
                 }
-            }else{
-                logger.info("等待图片生成["+fileName+"].");
+            } else {
+                logger.info("等待图片生成[" + fileName + "].");
             }
         }
     }
