@@ -45,6 +45,7 @@ public class UserService implements CommunityConstant {
     private String contextPath;
 
     // Redis 重构
+    // 优先从 Redis 中取值，取不到时初始化，用户数据变更时清除
     public User findUserById(int id){
 
 //        return userMapper.selectById(id);
@@ -189,7 +190,6 @@ public class UserService implements CommunityConstant {
         return userMapper.selectByName(username);
     }
 
-    // 优先从 Redis 中取值，取不到时初始化，数据变更时清除
     private User getCahce(int userId) {
         String redisKey = RedisKeyUtil.getUserKey(userId);
         return (User)redisTemplate.opsForValue().get(redisKey);

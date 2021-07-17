@@ -40,7 +40,7 @@
 
 #### 分页
 
-Page 类封装了分页逻辑，包含当前页面 current、显示上限 limit、总行数 rows 和查询路径 path，除了自动生成的 get/set 方法，我们还需要加上一些对页的 get 操作实现了首页的分页功能。帖子的评论功能也是使用 Page 类完成分页的功能。
+Page 类封装了分页逻辑，包含当前页面 current、显示上限 limit、总行数 rows 和查询路径 path，除了自动生成的 get/set 方法，我们还需要加上一些对页的 get 操作实现了首页的分页功能。帖子的评论功能也是使用 Page 类来完成分页。
 
 ```java
 
@@ -734,6 +734,8 @@ Kafka 消息队列同样也能优化性能，是本项目的另一大亮点。
 **Kafka 的优势**
 
 - Kafka 可分为多个 Topic，每个 Topic 又分为多个 Partition，多线程可以同时向多个 Partition 中写数据，增强并发能力。
+
+- Kafka 可以对消息持久化。
 
 Event 事件类，事件包括 DiscussPost 帖子事件，Comment 相关的评论回复事件，点赞关注事件，以及后续的分享长图事件。
 
